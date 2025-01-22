@@ -16,10 +16,17 @@ public class FlyingMode : MonoBehaviour
 
     private Rigidbody2D _rb2D;
 
+    public AddManager _adManager;
+
     void Awake()
     {
         _rb2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        _adManager = FindAnyObjectByType<AddManager>();
     }
 
     void Update()
@@ -73,6 +80,7 @@ public class FlyingMode : MonoBehaviour
     // Trigger game over event
     public void Dead()
     {
+        AddManager.instance.ShowAd();
         GameManager.Instance.GameOver();
     }
 }
